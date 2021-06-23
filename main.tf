@@ -25,4 +25,12 @@ resource "aws_instance" "web" {
     password = "${var.admin_password}"
     host = "${self.private_ip}"
   }
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip} > hosts.txt"
+  }
+  provisioner "remote-exec" {
+    inline = [
+         "powershell -ExecutionPolicy Unrestricted -File winrm.ps1"
+        ]
+  }
 }
