@@ -19,10 +19,11 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   key_name = "ec2"
   security_groups = ["launch-wizard-2"]
+  get_password_data = "true"
   connection {
     type = "winrm"
     user = "Administrator"
-    password = "${var.admin_password}"
+    password = "${rsadecrypt(self.password_data, file("/root/.ssh/id_rsa"))}"
     host = "${self.private_ip}"
   }
   provisioner "local-exec" {
