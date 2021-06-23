@@ -10,10 +10,6 @@ terraform {
 provider "aws" {
   region = "us-east-2"
 }
-variable "admin_password" {
-  type        = string
-  description = "Enter the password for Windows"
-}
 resource "aws_instance" "web" {
   ami           = "ami-0835374e611a23aa7"
   instance_type = "t2.micro"
