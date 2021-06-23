@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Install Chocolatey on Win
+      win_chocolatey: name=procexp state=present
+    - name: Install Adobe Reader DC
+      win_chocolatey:
+        name: adobereader
+        state: present
