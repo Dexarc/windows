@@ -12,6 +12,6 @@ provider "aws" {
 }
 
 resource "aws_instance" "win2" {
-  ami           = "ami-0835374e611a23aa7"
+  ami           = "ami-077e31c4939f6a2f3"
   instance_type = "t2.micro"
   key_name = "ec2"
