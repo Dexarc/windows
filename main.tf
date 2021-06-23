@@ -21,10 +21,10 @@ resource "aws_instance" "web" {
     user = "Administrator"
     port = 5986
     password = "${rsadecrypt(self.password_data, file("ec.pem"))}"
-    host = "${self.private_ip}"
+    host = "${self.public_ip}"
   }
   provisioner "local-exec" {
-    command = "echo ${self.private_ip} > hosts.txt"
+    command = "echo ${self.public_ip} > hosts.txt"
   }
   provisioner "remote-exec" {
     inline = [
