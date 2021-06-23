@@ -19,7 +19,7 @@ resource "aws_instance" "web" {
   connection {
     type = "winrm"
     user = "Administrator"
-    password = "${rsadecrypt(self.password_data, file("/root/.ssh/id_rsa"))}"
+    password = "pELXfc@ZfS&iRHP&3GwXLjY%X=@XdcHS"
     host = "${self.private_ip}"
   }
   provisioner "local-exec" {
