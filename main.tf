@@ -10,13 +10,19 @@ terraform {
 provider "aws" {
   region = "us-east-2"
 }
-
+variable "admin_password" {
+  type        = string
+  description = "Enter the password for Windows"
+}
 resource "aws_instance" "web" {
   ami           = "ami-0835374e611a23aa7"
   instance_type = "t2.micro"
   key_name = "ec2"
   security_groups = ["launch-wizard-2"]
-  provisioner "local-exec" {
-    command = "echo ${self.public_ip} > hosts.inv"
+  connection {
+    type = "winrm"
+    user = "Administrator"
+    password = "${var.admin_password}"
+    host = "${self.private_ip}"
   }
 }
