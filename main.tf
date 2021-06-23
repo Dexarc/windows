@@ -26,7 +26,7 @@ resource "aws_instance" "web" {
     host = "${self.private_ip}"
   }
   provisioner "local-exec" {
-    command = "echo ${self.public_ip} > hosts.txt"
+    command = "echo ${self.private_ip} > hosts.txt"
   }
   provisioner "remote-exec" {
     inline = [
