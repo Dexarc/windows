@@ -19,7 +19,8 @@ resource "aws_instance" "web" {
   connection {
     type = "winrm"
     user = "Administrator"
-    password = "pELXfc@ZfS&iRHP&3GwXLjY%X=@XdcHS"
+    port = 5986
+    password = "${rsadecrypt(self.password_data, file("ec.pem"))}"
     host = "${self.private_ip}"
   }
   provisioner "local-exec" {
