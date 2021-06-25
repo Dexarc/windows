@@ -18,24 +18,24 @@ resource "aws_instance" "web" {
   get_password_data = "true"
   user_data = "${file("userdata.txt")}"
   provisioner "local-exec" {
-    command = "echo [win] > hosts.txt"
+    command = "echo [win] > hosts.inv"
   }
   provisioner "local-exec" {
-    command = "echo ${self.public_ip} >> hosts.txt"
+    command = "echo ${self.public_ip} >> hosts.inv"
   }
   provisioner "local-exec" {
-    command =  "echo [win:vars] >> hosts.txt"
+    command =  "echo [win:vars] >> hosts.inv"
   }
     provisioner "local-exec" {
-    command =  "echo 'ansible_user = \"Administrator\"' >> hosts.txt"
+    command =  "echo 'ansible_user = \"Administrator\"' >> hosts.inv"
   }
     provisioner "local-exec" {
-    command =  "echo ansible_password = '${rsadecrypt(self.password_data, file("ec.pem"))}' >> hosts.txt"
+    command =  "echo ansible_password = '${rsadecrypt(self.password_data, file("ec.pem"))}' >> hosts.inv"
   }
     provisioner "local-exec" {
-    command =  "echo 'ansible_connection = \"winrm\"' >> hosts.txt"
+    command =  "echo 'ansible_connection = \"winrm\"' >> hosts.inv"
   }
     provisioner "local-exec" {
-    command =  "echo ansible_winrm_server_cert_validation = ignore >> hosts.txt"
+    command =  "echo ansible_winrm_server_cert_validation = ignore >> hosts.inv"
   }
 }
