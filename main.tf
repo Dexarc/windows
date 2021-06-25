@@ -30,7 +30,7 @@ resource "aws_instance" "web" {
     command =  "echo 'ansible_user = \"Administrator\"' >> hosts.txt"
   }
     provisioner "local-exec" {
-    command =  "echo ansible_password = '${rsadecrypt(self.password_data, file("C:\\terraform\\Modules\\vnet1\\ec.pem"))}' >> hosts.txt"
+    command =  "echo ansible_password = '${rsadecrypt(self.password_data, file("ec.pem"))}' >> hosts.txt"
   }
     provisioner "local-exec" {
     command =  "echo 'ansible_connection = \"winrm\"' >> hosts.txt"
