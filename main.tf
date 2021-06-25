@@ -16,7 +16,7 @@ resource "aws_instance" "web" {
   key_name = "ec2"
   security_groups = ["launch-wizard-2"]
   get_password_data = "true"
-  user_data = "${file(userdata.txt)}"
+  user_data = "${file("userdata.txt")}"
   provisioner "local-exec" {
     command = "echo [win] > hosts.inv"
   }
